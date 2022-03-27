@@ -42,10 +42,10 @@
   "dependencies": {
     "@iden3/binfileutils": "0.0.10",
     "blake2b-wasm": "^2.4.0",
-    "circom_runtime": "0.1.17",
+    "circom_runtime": "git+https://github.com/veronicaz41/circom_runtime.git#vzheng/btoa",
     "ejs": "^3.1.6",
     "fastfile": "0.0.19",
-    "ffjavascript": "github:veronicaz41/ffjavascript#vzheng/cabal",
+    "ffjavascript": "git+https://github.com/veronicaz41/ffjavascript.git#vzheng/cabal",
     "js-sha3": "^0.8.0",
     "logplease": "^1.2.15",
     "r1csfile": "0.0.35",
