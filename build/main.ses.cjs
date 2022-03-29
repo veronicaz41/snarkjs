@@ -44,12 +44,14 @@ ffjavascript.Scalar.e("218882428718392752222464057452572750885483644004160343436
 const bls12381q = ffjavascript.Scalar.e("1a0111ea397fe69a4b1ba7b6434bacd764774b84f38512bf6730d2a0f6b0f6241eabfffeb153ffffb9feffffffffaaab", 16);
 const bn128q = ffjavascript.Scalar.e("21888242871839275222246405745257275088696311157297823662689037894645226208583");
 
+const singleThread = true;
+
 async function getCurveFromQ(q) {
     let curve;
     if (ffjavascript.Scalar.eq(q, bn128q)) {
-        curve = await ffjavascript.buildBn128();
+        curve = await ffjavascript.buildBn128(singleThread);
     } else if (ffjavascript.Scalar.eq(q, bls12381q)) {
-        curve = await ffjavascript.buildBls12381();
+        curve = await ffjavascript.buildBls12381(singleThread);
     } else {
         throw new Error(`Curve not supported: ${ffjavascript.Scalar.toString(q)}`);
     }
@@ -60,9 +62,9 @@ async function getCurveFromName(name) {
     let curve;
     const normName = normalizeName(name);
     if (["BN128", "BN254", "ALTBN128"].indexOf(normName) >= 0) {
-        curve = await ffjavascript.buildBn128();
+        curve = await ffjavascript.buildBn128(singleThread);
     } else if (["BLS12381"].indexOf(normName) >= 0) {
-        curve = await ffjavascript.buildBls12381();
+        curve = await ffjavascript.buildBls12381(singleThread);
     } else {
         throw new Error(`Curve not supported: ${name}`);
     }
