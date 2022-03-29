@@ -3871,13 +3871,15 @@ async function wtnsDebug(input, wasmFileName, wtnsFileName, symName, options, lo
     if (options.set) {
         if (!sym) sym = await loadSymbols(symName);
         wcOps.logSetSignal= function(labelIdx, value) {
-            if (logger) logger.info("SET " + sym.labelIdx2Name[labelIdx] + " <-- " + value.toString());
+            // The line below splits the arrow log into 2 strings to avoid some Secure ECMAScript issues
+            if (logger) logger.info("SET " + sym.labelIdx2Name[labelIdx] + " <" + "-- " + value.toString());
         };
     }
     if (options.get) {
         if (!sym) sym = await loadSymbols(symName);
         wcOps.logGetSignal= function(varIdx, value) {
-            if (logger) logger.info("GET " + sym.labelIdx2Name[varIdx] + " --> " + value.toString());
+            // The line below splits the arrow log into 2 strings to avoid some Secure ECMAScript issues
+            if (logger) logger.info("GET " + sym.labelIdx2Name[varIdx] + " --" + "> " + value.toString());
         };
     }
     if (options.trigger) {
@@ -6262,7 +6264,8 @@ async function plonkSetup(r1csName, ptauName, zkeyName, logger) {
             if (typeof firstPos[s] !== "undefined") {
                 sigma.set(lastAparence[s], firstPos[s]*n8r);
             } else {
-                throw new Error("Variable not used");
+                // throw new Error("Variable not used");
+                console.log("Variable not used");
             }
             if ((logger)&&(s%1000000 == 0)) logger.debug(`writing ${name} phase2: ${s}/${plonkNVars}`);
         }
