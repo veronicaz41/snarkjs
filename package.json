@@ -9,12 +9,14 @@
     "import": "./main.js",
     "require": "./build/main.cjs"
   },
+  "browser": "./build/main.ses.cjs",
   "scripts": {
     "test": "mocha",
     "build": "rollup -c config/rollup.cjs.config.js",
     "buildcli": "rollup -c config/rollup.cli.config.js",
     "buildiife": "BROWSER=true rollup -c config/rollup.iife.config.js",
-    "buildiifemin": "BROWSER=true rollup -c config/rollup.iife_min.config.js"
+    "buildiifemin": "BROWSER=true rollup -c config/rollup.iife_min.config.js",
+    "buildses": "BROWSER=true SES=true rollup -c config/rollup.ses.config.js"
   },
   "bin": {
     "snarkjs": "build/cli.cjs"
@@ -38,15 +40,15 @@
     "url": "https://github.com/iden3/snarkjs.git"
   },
   "dependencies": {
-    "@iden3/binfileutils": "0.0.10",
+    "@iden3/binfileutils": "github:veronicaz41/binfileutils#vzheng/cabal",
     "blake2b-wasm": "^2.4.0",
-    "circom_runtime": "0.1.17",
+    "circom_runtime": "github:veronicaz41/circom_runtime#vzheng/btoa",
     "ejs": "^3.1.6",
     "fastfile": "0.0.19",
-    "ffjavascript": "0.2.48",
+    "ffjavascript": "github:veronicaz41/ffjavascript#vzheng/cabal",
     "js-sha3": "^0.8.0",
     "logplease": "^1.2.15",
-    "r1csfile": "0.0.35",
+    "r1csfile": "github:veronicaz41/r1csfile#vzheng/cabal",
     "readline": "^1.3.0"
   },
   "devDependencies": {
@@ -59,6 +61,7 @@
     "eslint": "^8.7.0",
     "mocha": "^9.1.4",
     "rollup": "^2.36.2",
+    "rollup-plugin-jscc": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-visualizer": "^4.2.0"
   }
